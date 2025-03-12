@@ -1,0 +1,54 @@
+# This file contains common pin mappings for the BigTreeTech Octopus V1.
+# To use this config, the firmware should be compiled for the STM32F446 with a "32KiB bootloader"
+# Enable "extra low-level configuration options" and select the "12MHz crystal" as clock reference
+
+## LDO VORON2.4r2 350mm Kit w/BigTreeTech OctoPus-TMC2209 UART
+
+[include mainsail.cfg]
+#[include macros/*.cfg]
+[include hardware/*.cfg]
+
+[mcu]
+serial: /dev/serial/by-id/usb-Klipper_stm32f446xx_2F0019001150324E31333220-if00
+restart_method: command
+
+[mcu host]
+serial: /tmp/klipper_host_mcu
+
+[temperature_sensor BTT_Octopus]
+sensor_type: temperature_mcu
+min_temp: 10
+max_temp: 115
+
+[temperature_sensor raspberry_pi]
+sensor_type: temperature_host
+min_temp: 10
+max_temp: 115
+
+[printer]
+kinematics: corexy
+max_velocity: 400  
+max_accel: 3500
+max_z_velocity: 20
+max_z_accel: 350
+square_corner_velocity: 6.5
+
+[idle_timeout]
+timeout: 8000
+
+[virtual_sdcard]
+path: ~/gcodes
+
+[pause_resume]
+
+[respond]
+
+[display_status]
+
+[force_move]
+enable_force_move: True
+
+[exclude_object]
+
+[gcode_arcs]
+resolution: 0.1
